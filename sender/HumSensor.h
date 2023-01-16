@@ -7,6 +7,9 @@
 class HumSensor: public Sensor {
   public:
     HumSensor(long device_interval, String id);
+
+    //temperatur und feuchte
+
     float getTemp();
 
     float getHum();
@@ -14,6 +17,8 @@ class HumSensor: public Sensor {
     void virtual setup(int pin);
   private:
     bool virtual action();
+
+    // dht objekt der DHT Library
     DHT* dht;
 };
 

@@ -7,9 +7,11 @@ void LightSensor::setup(int pin) {
 
 
 int LightSensor::getBrightness() {
+  // ganz normales analogRead
   return analogRead(pdpin);
 }
 
+//s. Sensor.h
 String LightSensor::getDataString() {
   return getID() +":" +String(getBrightness());
 }
