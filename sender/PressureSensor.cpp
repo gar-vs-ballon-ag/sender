@@ -22,7 +22,7 @@ float PressureSensor::getPressure() {
 }
 
 String PressureSensor::getDataString() {
-  return getID() + ":" + String(getTemp()) + ";"+String(getPressure())+":°C und mbar";
+  return getID() + ":" + String(getTemp()) + ";"+String(getPressure());
 }
 
 bool PressureSensor::action() {

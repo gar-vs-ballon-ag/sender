@@ -2,6 +2,7 @@
 #define GPSSENSOR_H
 
 #include "Sensor.h"
+#include <ARDUINO.h>
 #include <TinyGPSPlus.h>
 
 class GPSSensor: public Sensor {

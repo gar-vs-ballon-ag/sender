@@ -7,11 +7,14 @@
 #include "SerialMon.h"
 #include "Logger.h"
 #include "SDcard.h"
+#include "LoRa.h"
 
 Sensor* sensors [SENSOR_NUMBER];
 Logger* loggers [LOGGER_NUMBER];
 
 void setup() {
+  pinMode(24, OUTPUT);
+  
   for ( int i =0 ; i < LOGGER_NUMBER; i++) {
     loggers[i] = '\0';
   }
@@ -26,32 +29,34 @@ void setup() {
 
   loggers[1] = new SDcard();
   loggers[1] -> setup(15);
+
+  loggers[2] = new Lora();
+  loggers[2] -> setup(LORA_ss);
   
   
-  sensors[0] = new LightSensor(1000, "Licht_Ganz");
+  sensors[0] = new LightSensor(5000, "L_FULL");
   sensors[0] -> setup(PDALL);
   
-  //sensors[1] = new PressureSensor(5000, "Druck");
-  sensors[1] = new LightSensor(1000, "Licht_Blau");
+  sensors[1] = new PressureSensor(5000, "BAR");
   
-  sensors[2] = new HumSensor(1000, "Feuchte_2_27");
+  sensors[2] = new HumSensor(5000, "F2");
   sensors[2] -> setup(DHTPIN1);
 
-  sensors[3] = new HumSensor(5000, "Feuchte_1_26");
+  sensors[3] = new HumSensor(5000, "F1");
   sensors[3] -> setup(DHTPIN2);
   
-  sensors[4] = new LightSensor(1000, "Licht_Rot");
+  sensors[4] = new LightSensor(5000, "LR");
   sensors[4] -> setup(PDRED);
   
-  sensors[5] = new LightSensor(1000, "Licht_Blau");
+  sensors[5] = new LightSensor(5000, "LB");
   sensors[5] -> setup(PDBLUE);
 
 
-  sensors[6] = new LightSensor(1000, "Licht_Grün");
+  sensors[6] = new LightSensor(5000, "LG");
   sensors[6] -> setup(PDGREEN);
 
   sensors[7] = new GPSSensor(5000, "GPS");
-  ss.begin(GPSBAUD, SERIAL_8N1, DHTPIN1, DHTPIN2);
+  ss.begin(GPSBAUD, SERIAL_8N1, RXD2, TXD2);
 
   loggers[0] -> logStr("Setup abgeschlossen!");
 
@@ -67,5 +72,7 @@ void loop() {
       }
     }
   }
- delay(999); 
+
+ loggers[2] -> checkAction(systime);
+ delay(2500); 
 }

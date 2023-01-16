@@ -18,7 +18,7 @@ String Sensor::checkAction(long systime) {
   
   if (systime - lastAction > interval) {
     lastAction = systime;
-    return String( systime )+ getDataString() + tme(systime);
+    return String( systime )+ getDataString();
   }
   else {
     return "";

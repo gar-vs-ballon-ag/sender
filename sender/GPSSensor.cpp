@@ -10,6 +10,12 @@ GPSSensor::GPSSensor(long device_interval, String id): Sensor(device_interval, i
 }
 
 String GPSSensor::getDataString() {
+  if (getSat() == "**** ") {
+    digitalWrite(24, HIGH);
+  }
+  else {
+    digitalWrite(24, LOW);
+  }
   return "GPS:" + getSat() + getLat() + getLong() + printDateTime ( gps -> date, gps -> time)+":";
 }
 

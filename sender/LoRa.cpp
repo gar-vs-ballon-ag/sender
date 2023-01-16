@@ -41,15 +41,8 @@ void Lora::logStr( String dataString) {
 }
 
 void Lora::action ( long systime) {
-  Serial.println("dsjhgsdkghdgjhsdgjhsdgshgsjdhgsdjhgskdhgsjghsdkjhgdskjhgskjhgshggghjgsjgjjjjjjghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhj");
-  Serial.println(systime > lastAction + LORA_INTERVAL);
-  Serial.println(systime);
-  Serial.println(lastAction);
-  Serial.println(LORA_INTERVAL);
-  Serial.println("dsjhgsdkghdgjhsdgjhsdgshgsjdhgsdjhgskdhgsjghsdkjhgdskjhgskjhgshggghjgsjgjjjjjjghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhj");
   
   if (systime > lastAction + LORA_INTERVAL ) {
-    Serial.println("Sending dsjhgsdkghdgjhsdgjhsdgshgsjdhgsdjhgskdhgsjghsdkjhgdskjhgskjhgshggghjgsjgjjjjjjghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhj");
     LoRa.endPacket();
     LoRa.beginPacket();
     lastAction = systime;

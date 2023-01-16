@@ -13,7 +13,7 @@ class Logger: public Device {
   private:
       long lastAction;
       String nameID;
-      void action() {}
+      void virtual action(long systime) = 0;
 };
 
 #endif

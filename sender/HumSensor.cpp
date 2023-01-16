@@ -22,7 +22,7 @@ float HumSensor::getHum() {
 }
 
 String HumSensor::getDataString() {
-  return getID() + ":" + String(getTemp()) + ";"+String(getHum())+":°C und %";
+  return getID() + ":" + String(getTemp()) + ";"+String(getHum());
 }
 
 bool HumSensor::action() {

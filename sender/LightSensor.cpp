@@ -11,7 +11,7 @@ int LightSensor::getBrightness() {
 }
 
 String LightSensor::getDataString() {
-  return getID() +":" +String(getBrightness())+":";
+  return getID() +":" +String(getBrightness());
 }
 
 bool LightSensor::action() {
