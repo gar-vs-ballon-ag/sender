@@ -1,3 +1,11 @@
+/*
+****************************
+* HAUPTPROGRAMM
+* Alle Konstanten sind in settings.h zu finden.
+****************************
+*/
+
+
 #include "settings.h"
 
 #include "LightSensor.h"
@@ -9,21 +17,27 @@
 #include "SDcard.h"
 #include "LoRa.h"
 
+//Arrays der Logger und Sensoren initialisieren 
 Sensor* sensors [SENSOR_NUMBER];
 Logger* loggers [LOGGER_NUMBER];
 
 void setup() {
+  // Kontroll-LED initialisieren
   pinMode(24, OUTPUT);
   
+  // Logger und Sensor Array mit NULL füllen
+  
   for ( int i =0 ; i < LOGGER_NUMBER; i++) {
-    loggers[i] = '\0';
+    loggers[i] = NULL;
   }
   
   for ( int i =0 ; i < SENSOR_NUMBER; i++) {
-    sensors[i] = '\0';
+    sensors[i] = NULL;
   }
-
-
+  
+  // Alles initialisieren
+  
+  // Serieller Monitor als Logger-Klasse, nur zu Testzwecken.
   loggers[0] = new SerialMon();
   loggers[0] -> setup(115200);
 
@@ -56,6 +70,8 @@ void setup() {
   sensors[6] -> setup(PDGREEN);
 
   sensors[7] = new GPSSensor(5000, "GPS");
+  // ss = Serial2 ( siehe settings.h)
+  // Serielle Schnittstelle des GPS-Chips initalisieren
   ss.begin(GPSBAUD, SERIAL_8N1, RXD2, TXD2);
 
   loggers[0] -> logStr("Setup abgeschlossen!");
@@ -64,15 +80,22 @@ void setup() {
 
 void loop() {
   long systime = millis();
+  // durch alle sensoren durchloopen
   for ( int i =0 ; i < SENSOR_NUMBER; i++) {
+    // den sensor seine aktion ausführen lassen -> falls es noch nicht zeit dazu ist, gibt es "" zurück, ansonsten den zu loggenden string
     String ret = sensors[i] -> checkAction(systime);
+    // falls was zurückgegeben, über die logger drüberloopen
     if (ret != "") {
       for(int i = 0  ; i < LOGGER_NUMBER ; i++) {
+        // den string loggen
         loggers[i] -> logStr(ret);
       }
     }
   }
 
+ // extra prüfen, ob es zeit ist ein LoRa paket zu senden
  loggers[2] -> checkAction(systime);
+ 
+ //delay, um strom zu sparen
  delay(2500); 
 }
