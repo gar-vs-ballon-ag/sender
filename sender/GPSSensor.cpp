@@ -1,5 +1,12 @@
 #include "GPSSensor.h"
 
+
+/*
+* Der Code stammt größtenteils aus einem Beispiel der GPS-Bibliothek (https://github.com/mikalhart/TinyGPSPlus/blob/master/examples/DeviceExample/DeviceExample.ino), 
+* wir haben alles in die methoden verpackt und getDataString implementierz
+*/
+
+
 bool GPSSensor::action() {
   Serial.println(getDataString());
 }

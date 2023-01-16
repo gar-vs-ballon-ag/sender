@@ -9,6 +9,8 @@ class GPSSensor: public Sensor {
   public:
     GPSSensor(long device_interval, String id);
     void virtual setup(int pin) {}
+
+    //Es werden ein paar extra funktionen benötigt
     String getLong();
     String getLat();
     String getSat();
