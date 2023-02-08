@@ -8,6 +8,9 @@
 class PressureSensor: public Sensor {
   public:
     PressureSensor(long device_interval, String id);
+
+    // Druck und temperatur
+
     float getTemp();
 
     float getPressure();
@@ -15,6 +18,8 @@ class PressureSensor: public Sensor {
     void virtual setup(int pin);
   private:
     bool virtual action();
+
+    // BMP085 Library (wir verwenden BMP180, geht für mehrere sensoren)
     Adafruit_BMP085* bmp;
 };
 

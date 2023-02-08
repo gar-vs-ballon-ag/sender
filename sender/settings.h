@@ -2,13 +2,23 @@
 #define SETTINGS_H
 
 #define SENSOR_NUMBER 8
-#define LOGGER_NUMBER 2
+#define LOGGER_NUMBER 3
 
+// LORA
+#define LORA_INTERVAL 5000
+#define LORA_ss 5
+
+// DHT22
 #define DHTPIN1 27
 #define DHTPIN2 26
+
+//GPS
+#define RXD2 16
+#define TXD2 17
 #define GPSBAUD 4800
 #define ss Serial2
 
+// LICHT
 #define PDALL 34
 #define PDRED 35
 #define PDBLUE 32

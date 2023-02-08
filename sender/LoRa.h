@@ -4,8 +4,8 @@ class Lora : public Logger {
 public:
   void logStr(String dataString);
   void setup(int pin);
-  void action(long systime);
 private:
-  long lastAction;  
+  long lastAction;
+  void action(long systime);
 
 };

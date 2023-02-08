@@ -1,7 +1,8 @@
 #include "Logger.h"
 
 void Logger::checkAction(long systime) {
-    action();
+    // s. Logger.h
+    action(systime);
 
 }
 

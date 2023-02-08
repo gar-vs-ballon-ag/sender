@@ -6,7 +6,9 @@
 #define rst 14
 #define dio0 2
 
-
+/*
+* der code aus LoRa::setup und LoRa::logStr wurden aus https://randomnerdtutorials.com/esp32-lora-rfm95-transceiver-arduino-ide/ entnommen
+*/
 
 void Lora::setup(int pin) {
   //initialize Serial Monitor
@@ -40,16 +42,15 @@ void Lora::logStr( String dataString) {
   LoRa.print("\n");
 }
 
+/*
+* Der LoRa-Chip kann die Pakete nicht schnell nacheinander abschicken,
+* Also wird das Paket nur alle 5 Sekunden (s. settings.ino) abgeschickt
+* und danach ein neues paket eröffnet
+*/
+
 void Lora::action ( long systime) {
-  Serial.println("dsjhgsdkghdgjhsdgjhsdgshgsjdhgsdjhgskdhgsjghsdkjhgdskjhgskjhgshggghjgsjgjjjjjjghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhj");
-  Serial.println(systime > lastAction + LORA_INTERVAL);
-  Serial.println(systime);
-  Serial.println(lastAction);
-  Serial.println(LORA_INTERVAL);
-  Serial.println("dsjhgsdkghdgjhsdgjhsdgshgsjdhgsdjhgskdhgsjghsdkjhgdskjhgskjhgshggghjgsjgjjjjjjghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhj");
   
   if (systime > lastAction + LORA_INTERVAL ) {
-    Serial.println("Sending dsjhgsdkghdgjhsdgjhsdgshgsjdhgsdjhgskdhgsjghsdkjhgdskjhgskjhgshggghjgsjgjjjjjjghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhj");
     LoRa.endPacket();
     LoRa.beginPacket();
     lastAction = systime;
