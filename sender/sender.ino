@@ -13,6 +13,7 @@
 #include "HumSensor.h"
 #include "GPSSensor.h"
 #include "SerialMon.h"
+#include "GasSensor.h"
 #include "Logger.h"
 #include "SDcard.h"
 #include "LoRa.h"
@@ -48,7 +49,7 @@ void setup() {
   loggers[2] = new Lora();
   loggers[2] -> setup(LORA_ss);
   
-  
+
   sensors[0] = new LightSensor(5000, "L_FULL");
   sensors[0] -> setup(PDALL);
   
@@ -73,6 +74,15 @@ void setup() {
   gpsSensor = new GPSSensor(5000, "GPS");
   sensors[7] = gpsSensor;
 
+  sensors[8] = new GasSensor(5000, "GAS135");
+  sensors[8] -> setup(GAS135);
+
+  sensors[9] = new GasSensor(5000, "GAS7");
+  sensors[9] -> setup(GAS7);
+
+  sensors[10] = new GasSensor(5000, "GAS8");
+  sensors[10] -> setup(GAS8);
+
   loggers[0] -> logStr("Setup abgeschlossen!");
 
 }
@@ -95,7 +105,7 @@ void loop() {
  // extra prüfen, ob es zeit ist ein LoRa paket zu senden
  loggers[2] -> checkAction(systime);
 
- gpsSensor -> gpsLoop();
+ //gpsSensor -> gpsLoop();
  
  //delay, um strom zu sparen
  // delay(2500); 

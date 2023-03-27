@@ -1,7 +1,7 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-#define SENSOR_NUMBER 8
+#define SENSOR_NUMBER 11
 #define LOGGER_NUMBER 3
 
 // LORA
@@ -19,10 +19,15 @@
 #define ss Serial2
 
 // LICHT
-#define PDALL 34
-#define PDRED 35
-#define PDBLUE 32
-#define PDGREEN 33
+#define PDALL 34   // PD1
+#define PDRED 35   // PD2
+#define PDBLUE 32  // PD3
+#define PDGREEN 33 // PD4
+
+// GAS
+#define GAS135 39
+#define GAS7 36
+#define GAS8 25
 
 
 #endif

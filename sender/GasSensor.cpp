@@ -4,7 +4,7 @@ void GasSensor::setup(int pin) {
   sensorPin = pin;
 }
 
-float getGas() {
+float GasSensor::getGas() {
   return analogRead(sensorPin);
 }
 

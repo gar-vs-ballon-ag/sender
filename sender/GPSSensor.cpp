@@ -58,7 +58,6 @@ boolean GPSSensor::getUBX_ACK(uint8_t * MSG) {
         ackByteID = 0; // Reset and look again, invalid order
       }
     }
-
   }
 
 }

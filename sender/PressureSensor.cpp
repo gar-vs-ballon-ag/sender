@@ -15,11 +15,11 @@ void PressureSensor::setup(int pin) {
 
 
 float PressureSensor::getTemp() {
-  return bmp != '\0'?bmp -> readTemperature(): -999.0;
+  return bmp != NULL?bmp -> readTemperature(): -999.0;
 }
 
 float PressureSensor::getPressure() {
-  return  bmp != '\0'?bmp -> readPressure()/100.0: -999.0;
+  return  bmp != NULL?bmp -> readPressure()/100.0: -999.0;
 }
 
 String PressureSensor::getDataString() {
