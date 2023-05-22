@@ -103,10 +103,10 @@ void loop() {
   }
 
  // extra prüfen, ob es zeit ist ein LoRa paket zu senden
- loggers[2] -> checkAction(systime);
+ //loggers[2] -> checkAction(systime);
 
  gpsSensor -> gpsLoop();
  
  //delay, um strom zu sparen
- // delay(2500); 
+ delay(2500); 
 }
