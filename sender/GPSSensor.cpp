@@ -231,5 +231,5 @@ String GPSSensor::getDataString() {
 
 void GPSSensor::gpsLoop() {
   if (gps.available( gpsPort ))
-    saveString = GPSdataF( gps.read() );
+    saveString = "GPS:"+GPSdataF( gps.read() );
 }

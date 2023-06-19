@@ -23,6 +23,13 @@ Sensor* sensors [SENSOR_NUMBER];
 Logger* loggers [LOGGER_NUMBER];
 GPSSensor* gpsSensor;
 
+void logToAll(String st, Logger** loggers, int loggerNumber) {
+  for(int i = 0  ; i < loggerNumber ; i++) {
+        // den string loggen
+        loggers[i] -> logStr(st);
+      }
+}
+
 void setup() {
   // Kontroll-LED initialisieren
   pinMode(24, OUTPUT);
@@ -95,18 +102,15 @@ void loop() {
     String ret = sensors[i] -> checkAction(systime);
     // falls was zurückgegeben, über die logger drüberloopen
     if (ret != "") {
-      for(int i = 0  ; i < LOGGER_NUMBER ; i++) {
-        // den string loggen
-        loggers[i] -> logStr(ret);
-      }
+      logToAll(ret, loggers, LOGGER_NUMBER);
     }
   }
 
  // extra prüfen, ob es zeit ist ein LoRa paket zu senden
  loggers[2] -> checkAction(systime);
 
- //gpsSensor -> gpsLoop();
- 
- //delay, um strom zu sparen
- // delay(2500); 
+// logToAll("before gps loop", loggers, LOGGER_NUMBER);
+ gpsSensor -> gpsLoop();
+// logToAll("after gps loop", loggers, LOGGER_NUMBER);
+
 }
